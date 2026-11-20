@@ -1,0 +1,529 @@
+/* Charte PI (~/PI/Brand/tokens.json) en variables CSS, clair et sombre.
+   Format : canaux r g b, à lire avec rgb(var(--pi-good)) ou rgb(var(--pi-good) / .3).
+   Chargé après app.css : Tailwind n'est pas recompilé, les correctifs vivent ici. */
+:root{
+  --pi-bg:249 245 238;--pi-card:255 255 255;--pi-ink:26 26 26;--pi-ink-mute:85 85 85;
+  --pi-border:216 207 187;--pi-grid:236 230 216;--pi-hover:239 231 214;
+  --pi-accent:139 92 246;--pi-accent-ink:123 76 238;--pi-good:42 122 42;--pi-bad:179 74 31;--pi-warn:183 121 31;
+  --pi-series-2:8 145 178;--pi-series-3:212 163 115;
+  /* familles de screeners (icône de la barre latérale) : teintes des styles du Philosopher Portfolio */
+  --pi-fam-dip:139 92 246;--pi-fam-mom:59 130 246;--pi-fam-flow:212 160 23;--pi-fam-research:20 168 154;
+  --pi-font-mono:"JetBrains Mono","SF Mono",ui-monospace,monospace;
+  --pi-font-serif:"Source Serif 4",Georgia,Cambria,serif;
+}
+html.dark{
+  --pi-bg:21 19 15;--pi-card:33 30 24;--pi-ink:236 231 218;--pi-ink-mute:177 168 146;
+  --pi-border:58 53 43;--pi-grid:42 38 30;--pi-hover:42 38 30;
+  --pi-good:76 184 106;--pi-bad:226 121 75;--pi-warn:224 176 74;
+  --pi-series-2:45 183 214;--pi-series-3:224 185 143;
+}
+
+
+/* ===== 1. Mode sombre : classes de couleur employées qui n'avaient pas de surcharge html.dark =====
+   Généré par un script qui croise les classes employées (templates, *.js) et les règles d'app.css.
+   Même sélecteur qu'app.css préfixé html.dark (spécificité plus haute), valeurs via les variables --pi-*.
+   !important seulement sur les états hover dont la règle de base sombre d'app.css est déjà !important.
+   Les classes vues à la lecture seule, non employées, ne sont pas couvertes. */
+html.dark .divide-sepia-border>:not([hidden])~:not([hidden]){border-color:rgb(var(--pi-border))}
+html.dark .divide-sepia-border\/40>:not([hidden])~:not([hidden]){border-color:rgb(var(--pi-border) / .4)}
+html.dark .border-bad{border-color:rgb(var(--pi-bad))}
+html.dark .border-bad\/20{border-color:rgb(var(--pi-bad) / .2)}
+html.dark .border-bad\/30{border-color:rgb(var(--pi-bad) / .3)}
+html.dark .border-bad\/40{border-color:rgb(var(--pi-bad) / .4)}
+html.dark .border-good{border-color:rgb(var(--pi-good))}
+html.dark .border-good\/20{border-color:rgb(var(--pi-good) / .2)}
+html.dark .border-good\/30{border-color:rgb(var(--pi-good) / .3)}
+html.dark .border-good\/40{border-color:rgb(var(--pi-good) / .4)}
+html.dark .border-ink{border-color:rgb(var(--pi-ink))}
+html.dark .border-ink-mute{border-color:rgb(var(--pi-ink-mute))}
+html.dark .border-sepia-border\/30{border-color:rgb(var(--pi-border) / .3)}
+html.dark .border-sepia-border\/40{border-color:rgb(var(--pi-border) / .4)}
+html.dark .border-sepia-border\/50{border-color:rgb(var(--pi-border) / .5)}
+html.dark .border-sepia-border\/60{border-color:rgb(var(--pi-border) / .6)}
+html.dark .border-sepia-card{border-color:rgb(var(--pi-card))}
+html.dark .bg-bad{background-color:rgb(var(--pi-bad))}
+html.dark .bg-bad\/10{background-color:rgb(var(--pi-bad) / .1)}
+html.dark .bg-bad\/20{background-color:rgb(var(--pi-bad) / .2)}
+html.dark .bg-bad\/40{background-color:rgb(var(--pi-bad) / .4)}
+html.dark .bg-bad\/5{background-color:rgb(var(--pi-bad) / .05)}
+html.dark .bg-bad\/60{background-color:rgb(var(--pi-bad) / .6)}
+html.dark .bg-bad\/70{background-color:rgb(var(--pi-bad) / .7)}
+html.dark .bg-good{background-color:rgb(var(--pi-good))}
+html.dark .bg-good\/10{background-color:rgb(var(--pi-good) / .1)}
+html.dark .bg-good\/20{background-color:rgb(var(--pi-good) / .2)}
+html.dark .bg-good\/30{background-color:rgb(var(--pi-good) / .3)}
+html.dark .bg-good\/40{background-color:rgb(var(--pi-good) / .4)}
+html.dark .bg-good\/5{background-color:rgb(var(--pi-good) / .05)}
+html.dark .bg-good\/60{background-color:rgb(var(--pi-good) / .6)}
+html.dark .bg-good\/70{background-color:rgb(var(--pi-good) / .7)}
+html.dark .bg-good\/\[0\.06\]{background-color:rgb(var(--pi-good) / .06)}
+html.dark .bg-ink{background-color:rgb(var(--pi-ink))}
+html.dark .bg-ink-mute{background-color:rgb(var(--pi-ink-mute))}
+html.dark .bg-ink-mute\/40{background-color:rgb(var(--pi-ink-mute) / .4)}
+html.dark .bg-ink\/10{background-color:rgb(var(--pi-ink) / .1)}
+html.dark .bg-ink\/15{background-color:rgb(var(--pi-ink) / .15)}
+html.dark .bg-ink\/25{background-color:rgb(var(--pi-ink) / .25)}
+html.dark .bg-ink\/40{background-color:rgb(var(--pi-ink) / .4)}
+html.dark .bg-ink\/60{background-color:rgb(var(--pi-ink) / .6)}
+html.dark .bg-sepia-border{background-color:rgb(var(--pi-border))}
+html.dark .bg-sepia-border\/40{background-color:rgb(var(--pi-border) / .4)}
+html.dark .bg-white\/60{background-color:rgb(var(--pi-card) / .6)}
+html.dark .bg-white\/80{background-color:rgb(var(--pi-card) / .8)}
+html.dark .from-white\/10{--tw-gradient-from:rgb(var(--pi-card) / .1) var(--tw-gradient-from-position);--tw-gradient-to:rgb(var(--pi-card) / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}
+html.dark .via-white\/60{--tw-gradient-to:rgb(var(--pi-card) / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),rgb(var(--pi-card) / .6) var(--tw-gradient-via-position),var(--tw-gradient-to)}
+html.dark .to-\[\#b34a1f\]{--tw-gradient-to:rgb(var(--pi-bad)) var(--tw-gradient-to-position)}
+html.dark .to-white{--tw-gradient-to:rgb(var(--pi-card)) var(--tw-gradient-to-position)}
+html.dark .to-white\/90{--tw-gradient-to:rgb(var(--pi-card) / .9) var(--tw-gradient-to-position)}
+html.dark .text-ink-mute\/40{color:rgb(var(--pi-ink-mute) / .4)}
+html.dark .text-ink-mute\/50{color:rgb(var(--pi-ink-mute) / .5)}
+html.dark .text-ink-mute\/60{color:rgb(var(--pi-ink-mute) / .6)}
+html.dark .text-ink-mute\/70{color:rgb(var(--pi-ink-mute) / .7)}
+html.dark .text-ink-mute\/80{color:rgb(var(--pi-ink-mute) / .8)}
+html.dark .text-sepia-border{color:rgb(var(--pi-border))}
+html.dark .ring-sepia-border{--tw-ring-color:rgb(var(--pi-border))}
+html.dark .placeholder\:text-ink-mute::-moz-placeholder{color:rgb(var(--pi-ink-mute))}
+html.dark .placeholder\:text-ink-mute::placeholder{color:rgb(var(--pi-ink-mute))}
+html.dark .after\:bg-white:after{background-color:rgb(var(--pi-card))}
+html.dark .hover\:border-bad\/40:hover{border-color:rgb(var(--pi-bad) / .4)}
+html.dark .hover\:border-good\/40:hover{border-color:rgb(var(--pi-good) / .4)}
+html.dark .hover\:border-ink-mute:hover{border-color:rgb(var(--pi-ink-mute))}
+html.dark .hover\:border-ink-mute\/40:hover{border-color:rgb(var(--pi-ink-mute) / .4)}
+html.dark .hover\:text-bad:hover{color:rgb(var(--pi-bad))!important}
+html.dark .hover\:text-ink:hover{color:rgb(var(--pi-ink))!important}
+html.dark .bg-warn{background-color:rgb(var(--pi-warn))}
+html.dark .bg-ink.text-white,html.dark .bg-ink-mute.text-white{color:rgb(var(--pi-bg))}
+
+/* Classes employées dans des gabarits mais absentes d'app.css (sans effet jusqu'ici) : clair et sombre via variables. */
+.divide-sepia-border\/60>:not([hidden])~:not([hidden]){border-color:rgb(var(--pi-border) / .6)}
+.hover\:bg-sepia-soft:hover{background-color:rgb(var(--pi-hover))}
+.hover\:bg-sepia-border:hover{background-color:rgb(var(--pi-border))}
+.hover\:border-bad:hover{border-color:rgb(var(--pi-bad))}
+.hover\:border-accent\/30:hover{border-color:rgb(var(--pi-accent) / .3)}
+.text-white\/80{color:rgb(255 255 255 / .8)}
+html.dark .hover\:bg-sepia-border:hover{background-color:rgb(var(--pi-border))!important}
+html.dark .hover\:border-bad:hover{border-color:rgb(var(--pi-bad))!important}
+html.dark .hover\:border-accent\/30:hover{border-color:rgb(var(--pi-accent) / .3)!important}
+
+/* ===== 2. Titres : Source Serif 4, graisse 600 =====
+   Le preflight Tailwind met font-weight:inherit sur h1-h6 (0,0,1) et les utilitaires font-bold / font-sans (0,1,0)
+   le battent : on monte à (0,2,1). Exceptions : étiquettes en majuscules (.uppercase) et titres en mono. */
+h1:not(.uppercase):not(.font-mono),h2:not(.uppercase):not(.font-mono),h3:not(.uppercase):not(.font-mono){
+  font-family:var(--pi-font-serif);font-weight:600}
+.font-serif.font-bold{font-weight:600}
+
+/* ===== 3. Étiquette unique (petites majuscules au-dessus d'un chiffre, d'une colonne, d'un bloc) ===== */
+.label{font-size:.7rem;font-weight:600;color:rgb(var(--pi-ink-mute))}
+
+/* ===== 4. Rayons de la charte : puce 6px, contrôle 8px (rounded-lg), carte 12px (rounded-xl) =====
+   rounded (4px) et rounded-sm (2px) deviennent la puce, rounded-2xl (16px) devient la carte. */
+.rounded{border-radius:6px}.rounded-sm{border-radius:6px}.rounded-2xl{border-radius:12px}
+
+/* ===== 5. Composants : en-têtes de tableau et champs de formulaire =====
+   En-tête de colonne unique : 0.7rem, graisse 600, interlettrage .025em, ink_mute. Le fond et la casse ne bougent pas
+   (en-têtes collants, tickers, dates). :not(.pi-keep) monte la spécificité à (0,1,2) pour battre les utilitaires
+   Tailwind et les règles de tableau maison (.ft-t th). Exceptions : un th qui porte lui-même text-accent / text-good /
+   text-bad (état actif, colonne colorée), ou la classe .pi-keep. */
+thead th:not(.pi-keep):not([class^="text-accent"]):not([class*=" text-accent"]):not([class^="text-good"]):not([class*=" text-good"]):not([class^="text-bad"]):not([class*=" text-bad"]){
+  font-size:.7rem;font-weight:600;letter-spacing:.025em;color:rgb(var(--pi-ink-mute))}
+
+/* Champ unique (input, select, textarea) : fond carte, bordure de la charte, rayon 8px. La taille du texte vient de la page
+   (text-xs / text-sm posé sur le champ ou hérité), jamais d'ici. */
+select.pi-field,input.pi-field,textarea.pi-field{
+  background-color:rgb(var(--pi-card));border:1px solid rgb(var(--pi-border));border-radius:8px;
+  color:rgb(var(--pi-ink));box-shadow:none}
+select.pi-field:focus,input.pi-field:focus,textarea.pi-field:focus{border-color:rgb(var(--pi-accent));outline:none}
+
+/* ===== 6. Teintes de la charte absentes d'app.css : warn en pastille, series_2 / series_3 en texte et en barre ===== */
+.bg-warn\/10{background-color:rgb(var(--pi-warn) / .1)}
+.bg-warn\/20{background-color:rgb(var(--pi-warn) / .2)}
+.border-warn\/30{border-color:rgb(var(--pi-warn) / .3)}
+.border-warn\/40{border-color:rgb(var(--pi-warn) / .4)}
+.text-series-2{color:rgb(var(--pi-series-2))}
+.text-series-3{color:rgb(var(--pi-series-3))}
+.bg-series-2{background-color:rgb(var(--pi-series-2))}
+.bg-series-3{background-color:rgb(var(--pi-series-3))}
+
+
+/* ===== Menus et screeners pro (25/10/2026) =====
+   Barre latérale gauche dès 1024 px, header fin, screeners en une barre d'outils, un seul style de
+   tableau et de badge sur les pages membres. Couleurs : variables --pi-* seulement (clair et sombre). */
+
+/* --- header : onglet actif, pastille de statut, panneaux (vue publique et < 1024 px) --- */
+.nav-top{position:relative}
+.nav-top.nav-on::after{content:"";position:absolute;left:.75rem;right:.75rem;bottom:-.7rem;height:2px;border-radius:2px;background:rgb(var(--pi-accent))}
+.nav-chev svg{transition:transform .15s ease}
+details[open]>summary .nav-chev svg{transform:rotate(180deg)}
+.nav-panel{box-shadow:0 1px 2px rgb(var(--pi-ink) / .06),0 12px 32px -8px rgb(var(--pi-ink) / .18)}
+.nav-sect{font-size:.66rem;letter-spacing:.09em;opacity:.75}
+.nav-ico{flex:none;display:inline-flex;align-items:center;justify-content:center;width:1.9rem;height:1.9rem;border-radius:.5rem;background:rgb(var(--pi-accent) / .1);color:rgb(var(--pi-accent))}
+.nav-ico svg{width:1rem;height:1rem}
+.nav-item:hover .nav-ico,.nav-item.is-on .nav-ico{background:rgb(var(--pi-accent));color:white}
+.nav-foot{display:flex;align-items:center;justify-content:space-between;margin:.375rem .375rem 0;padding:.5rem .625rem .25rem;border-top:1px solid rgb(var(--pi-border));font-size:.75rem;color:rgb(var(--pi-ink-mute))}
+.nav-foot kbd{font-size:.7rem;border:1px solid rgb(var(--pi-border));border-radius:.25rem;padding:.05rem .3rem;line-height:1.2}
+.status-chip{padding:.25rem .6rem;border:1px solid rgb(var(--pi-border));border-radius:999px}
+.status-chip:not(:has(> *:not(:empty))){display:none}
+@media (max-width:1535px){.status-chip #mkt-status{display:none!important}}
+.ptab{border-radius:.5rem .5rem 0 0;transition:background .12s,color .12s}
+.ptab:hover{background:rgb(var(--pi-hover))}
+
+/* --- rail mobile des screeners : Find compact, pas de Pop out --- */
+.rail-find{position:relative}
+.rail-find-btn{position:absolute;right:.25rem;top:50%;transform:translateY(-50%);padding:.35rem;border-radius:.375rem}
+.rail-popout{display:none}
+
+/* --- barre latérale --- */
+.side-nav{display:none}
+@media (min-width:1024px){
+  body.has-side{padding-left:15rem}
+  .side-nav{display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;width:15rem;z-index:45;background:rgb(var(--pi-hover) / .45);border-right:1px solid rgb(var(--pi-border))}
+  body.has-side > header nav[aria-label="Primary"],body.has-side > header a[href="/today"].shrink-0{display:none!important}
+  body.has-side > header > div.max-w-6xl,body.has-side > main:not([style]),body.has-side > footer{max-width:100rem}
+  body.has-side > header .ml-auto{margin-left:0;flex:1}
+  body.has-side > header form[role=search]{order:-1;flex:1;max-width:34rem;margin-right:auto;padding-top:.45rem;padding-bottom:.45rem}
+  body.has-side > header form[role=search] input,body.has-side > header form[role=search] input:focus{width:100%}
+  body.has-side .lg\:grid-cols-12 > aside.lg\:col-span-2{display:none}
+  body.has-side .lg\:grid-cols-12 > aside.lg\:col-span-2 ~ .lg\:col-span-10{grid-column:1/-1}
+  body.has-side .admin-float{display:none}
+  /* the chart workspace is fixed to the window: it starts where the side bar ends */
+  body.has-side #tv{left:15rem}
+  body.has-side.side-mini #tv{left:4.25rem}
+  body.has-side.side-mini{padding-left:4.25rem}
+  body.side-mini .side-nav{width:4.25rem}
+  body.side-mini .side-brand{justify-content:center;padding:0}
+  body.side-mini .side-brand>span,body.side-mini .side-boards,body.side-mini .side-sub,body.side-mini .side-chev,body.side-mini .side-grp>span.flex-1,body.side-mini .side-tl,body.side-mini .side-admin{display:none!important}
+  body.side-mini .side-grp{font-size:0;justify-content:center;gap:0;padding:.6rem 0}
+  body.side-mini .side-toggle{justify-content:center;gap:0;margin:0 .4rem .4rem}
+  body.side-mini .side-toggle .side-ico{transform:rotate(-90deg)}
+}
+.side-brand{display:flex;align-items:center;gap:.65rem;height:4rem;flex:none;padding:0 1rem;border-bottom:1px solid rgb(var(--pi-border));color:rgb(var(--pi-ink));font-size:.86rem}
+.side-scroll{flex:1;overflow-y:auto;padding:.75rem .6rem 1.5rem;scrollbar-width:thin}
+.side-grp{display:flex;align-items:center;gap:.7rem;padding:.55rem .65rem;margin-bottom:.15rem;border-radius:.6rem;font-size:.875rem;font-weight:600;color:rgb(var(--pi-ink) / .85);cursor:pointer;list-style:none;user-select:none;transition:background .12s,color .12s}
+.side-grp::-webkit-details-marker{display:none}
+.side-grp:hover,.side-a:hover,.side-fam-h:hover,.side-toggle:hover{background:rgb(var(--pi-hover));color:rgb(var(--pi-ink))}
+.side-ico{flex:none;display:inline-flex;color:rgb(var(--pi-ink-mute) / .8)}
+.side-ico svg{width:18px;height:18px}
+.side-grp.is-on{background:rgb(var(--pi-accent));color:white}
+.side-grp.is-on .side-ico{color:white}
+.side-grp.is-in{color:rgb(var(--pi-ink))}
+.side-grp.is-in .side-ico,.side-fam[open]>.side-fam-h .side-fico{color:rgb(var(--pi-accent))}
+.side-chev{display:inline-flex;opacity:.5;transition:transform .15s;transform:rotate(-90deg)}
+.side-sec[open] .side-chev,.side-fam[open] .side-chev{transform:none}
+.side-sub{position:relative;margin:.1rem 0 .6rem 1.2rem;padding-left:.75rem;border-left:1px solid rgb(var(--pi-border))}
+.side-a{position:relative;display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.32rem .55rem;border-radius:.45rem;font-size:.82rem;color:rgb(var(--pi-ink-mute));transition:background .12s,color .12s}
+.side-a.is-on{background:rgb(var(--pi-accent) / .12);color:rgb(var(--pi-accent));font-weight:600}
+.side-a.is-on::before{content:"";position:absolute;left:calc(-.75rem - 1px);top:.3rem;bottom:.3rem;width:2px;border-radius:2px;background:rgb(var(--pi-accent))}
+.side-h{margin:.7rem 0 .2rem;padding:0 .55rem;font-size:.7rem;font-weight:700;color:rgb(var(--pi-ink-mute) / .75)}
+.side-n{flex:none;font-size:.7rem;font-weight:500;line-height:1;color:rgb(var(--pi-ink-mute) / .75);font-variant-numeric:tabular-nums}
+.side-find{margin:.15rem 0 .35rem}
+.side-find input{width:100%;font-size:.78rem;padding:.38rem .6rem;border-radius:.45rem;border:1px solid rgb(var(--pi-border));background:rgb(var(--pi-card));color:rgb(var(--pi-ink));outline:none}
+.side-find input:focus{border-color:rgb(var(--pi-accent))}
+.side-boards{margin-top:.6rem;padding-top:.6rem;border-top:1px solid rgb(var(--pi-border))}
+.side-fam>summary{list-style:none}
+.side-fam>summary::-webkit-details-marker{display:none}
+.side-fam-h{display:flex;align-items:center;gap:.55rem;margin:.1rem 0;padding:.4rem .55rem;border-radius:.5rem;font-size:.8rem;font-weight:600;color:rgb(var(--pi-ink) / .85);cursor:pointer;user-select:none}
+.side-fico{display:inline-flex;color:rgb(var(--pi-ink-mute) / .8)}
+.side-fico svg{width:15px;height:15px}
+.side-fam>.side-fam-h .side-fico.fam-dip{color:rgb(var(--pi-fam-dip))}
+.side-fam>.side-fam-h .side-fico.fam-mom{color:rgb(var(--pi-fam-mom))}
+.side-fam>.side-fam-h .side-fico.fam-flow{color:rgb(var(--pi-fam-flow))}
+.side-fam>.side-fam-h .side-fico.fam-research{color:rgb(var(--pi-fam-research))}
+.side-fam-list{margin:.05rem 0 .35rem .95rem;padding-left:.55rem;border-left:1px solid rgb(var(--pi-border))}
+.side-fam-list .side-a.is-on::before{left:calc(-.55rem - 1px)}
+.side-hint{margin:.1rem 0 .2rem;padding:0 .55rem;font-size:.72rem;line-height:1.35;color:rgb(var(--pi-ink-mute) / .8)}
+form.side-a{margin:0}
+form.side-a button.side-n{background:none;border:0;padding:0;cursor:pointer;color:rgb(var(--pi-accent));font-weight:600}
+.side-dot{width:6px;height:6px;border-radius:999px;background:rgb(var(--pi-accent));flex:none}
+.side-toggle{display:flex;align-items:center;gap:.7rem;margin:0 .6rem .4rem;padding:.45rem .65rem;border-radius:.6rem;font-size:.78rem;color:rgb(var(--pi-ink-mute));background:none;border:0;cursor:pointer;text-align:left}
+.side-toggle .side-ico{transform:rotate(90deg)}
+.side-admin{display:block;margin:.5rem .6rem .75rem;padding:.45rem .6rem;border-radius:.5rem;border:1px dashed rgb(var(--pi-border));font-size:.75rem;font-weight:600;color:rgb(var(--pi-ink-mute));text-align:center}
+.side-admin.is-on{background:rgb(var(--pi-accent));border-color:rgb(var(--pi-accent));color:white}
+
+/* --- screeners : en-tête, tableau, badges --- */
+.board-count{padding-left:.25rem}
+.board-hist svg path{stroke:rgb(var(--pi-ink-mute))!important}
+.board-hist svg circle{fill:rgb(var(--pi-accent))!important}
+.board-table td{padding-top:.28rem!important;padding-bottom:.28rem!important}
+.board-table tbody tr{height:36px}
+.board-table td svg[viewBox^="0 0 110"]{height:22px;width:96px}
+.board-table td svg[viewBox^="0 0 110"] path{stroke:rgb(var(--pi-ink-mute))!important;opacity:.6}
+/* point de fin = la séance (colonne Day), pas la tendance 6M : sinon rouge sur toute une liste de creux */
+.board-table td.sp-up svg circle{fill:rgb(var(--pi-good))!important}
+.board-table td.sp-dn svg circle{fill:rgb(var(--pi-bad))!important}
+.board-table td.sp-flat svg circle{fill:rgb(var(--pi-ink-mute))!important}
+.board-row{cursor:pointer}
+/* téléphone : chaque ligne du screener = une carte (nom en haut, puis chiffres étiquetés, courbe en bas) */
+@media (max-width:639px){
+  .board-cards,.board-cards tbody{display:block}
+  .board-cards thead{display:none}
+  .board-cards tbody tr{display:grid;grid-template-columns:1fr 1fr;gap:.15rem .75rem;height:auto!important;padding:.6rem .75rem;border-bottom:1px solid rgb(var(--pi-ink-mute) / .2)}
+  .board-cards td{display:flex;justify-content:space-between;align-items:center;gap:.5rem;position:static!important;border:0!important;padding:.1rem 0!important;text-align:right;min-width:0}
+  .board-cards td[data-label]:not([data-label=""])::before{content:attr(data-label);font-size:.7rem;color:rgb(var(--pi-ink-mute))}
+  .board-cards td:first-child{grid-column:1 / -1;order:-2}
+  .board-cards td:last-child{grid-column:1 / -1;justify-content:flex-start}
+  .board-cards td:last-child svg{width:100%!important}
+  .board-cards td>div[style*="width:9rem"]{width:auto!important}
+}
+/* conviction : cyan (niveau) à partir de 60, gris en dessous ; le violet reste aux actions */
+.conv-bar{display:inline-block;width:2.25rem;height:3px;border-radius:3px;background:rgb(var(--pi-ink-mute) / .18);overflow:hidden}
+.conv-bar>span{display:block;height:100%;background:rgb(var(--pi-ink-mute) / .55);border-radius:3px}
+.conv .conv-n{color:rgb(var(--pi-ink-mute))}
+.conv.conv-hi .conv-n{color:rgb(var(--pi-series-2))}
+.conv.conv-hi .conv-bar>span{background:rgb(var(--pi-series-2))}
+.co-name{max-width:6rem}
+@media (min-width:1280px){.co-name{max-width:10rem}}
+.cc-in-cols #cc-menu > summary{display:none}
+/* sticky rail sits right under the h-16 header: 4rem follows the 14px desktop root (64px was 8px too low) */
+.anchor-rail{top:4rem}
+@media (min-width:1024px){
+  .table-scroll:has(> .board-table){max-height:none!important;overflow:visible!important;position:static!important}
+  .table-scroll:has(> .board-table) thead th{top:4rem!important}
+}
+.nbadge{display:inline-flex;align-items:center;gap:.2rem;white-space:nowrap;font-size:.7rem;font-weight:600;line-height:1;padding:.18rem .35rem;border-radius:.3rem;border:1px solid rgb(var(--pi-border));color:rgb(var(--pi-ink-mute));background:transparent}
+.nbadge.bg-good\/10,.nbadge.bg-bad\/10,.nbadge.bg-warn\/10,.nbadge.bg-accent\/10,.nbadge.bg-sepia-hover{background:transparent!important}
+
+/* --- toutes les pages membres : même tableau, même pastille --- */
+body.has-side main table thead th{font-size:.7rem;font-weight:600;color:rgb(var(--pi-ink-mute))}
+body.has-side main table tbody td{padding-top:.3rem;padding-bottom:.3rem;font-variant-numeric:tabular-nums}
+body.has-side main table tbody tr{height:36px}
+body.has-side main table tbody tr:hover>td{background-color:rgb(var(--pi-hover) / .5)}
+body.has-side main span[class*="rounded"][class*="px-"][class*="bg-good/10"],
+body.has-side main span[class*="rounded"][class*="px-"][class*="bg-bad/10"],
+body.has-side main span[class*="rounded"][class*="px-"][class*="bg-warn/10"],
+body.has-side main span[class*="rounded"][class*="px-"][class*="bg-accent/10"]{background:transparent!important;border:1px solid rgb(var(--pi-border))!important;border-radius:.3rem!important;font-size:.7rem;font-weight:600;line-height:1;padding:.2rem .4rem!important}
+@media (min-width:1280px) and (max-width:1679px){body.has-side:not(.side-mini) #board-signals .xl\:grid-cols-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:640px){.sm\:whitespace-nowrap{white-space:nowrap}}
+
+/* ===== Appui tactile (26/10, skill mobile-native d'Emil Kowalski) =====
+   Le preflight Tailwind coupe le flash de tap (-webkit-tap-highlight-color:transparent)
+   et rien ne le remplaçait : sur téléphone, un appui ne donnait aucun retour.
+   Léger enfoncement au toucher, sans délai de double-tap. */
+button,[role="button"],summary,a[class*="rounded"],.wq-card{touch-action:manipulation}
+button:not(:disabled):active,[role="button"]:active,a[class*="rounded-lg"]:active,a[class*="rounded-full"]:active,.wq-card:active{transform:scale(.97);transition:transform 100ms ease-out}
+
+/* --- ux_markets : pastilles d'ancres collantes, "Show all", carte verdict, mini-graphiques --- */
+.pi-secnav{position:sticky;top:4rem;z-index:30;scrollbar-width:none}
+.pi-secnav::-webkit-scrollbar{display:none}
+.js-more-row{display:none!important}
+.mk-verdict{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem 2rem}
+.mk-tag{display:inline-flex;align-items:center;font-size:.7rem;font-weight:600;line-height:1;padding:.25rem .5rem;border-radius:999px;border:1px solid rgb(var(--pi-border))}
+.mk-tag-bad{color:rgb(var(--pi-bad));border-color:rgb(var(--pi-bad) / .4);background:rgb(var(--pi-bad) / .08)}
+.mk-tag-warn{color:rgb(var(--pi-warn));border-color:rgb(var(--pi-warn) / .4);background:rgb(var(--pi-warn) / .08)}
+.mk-tag-good{color:rgb(var(--pi-good));border-color:rgb(var(--pi-good) / .4);background:rgb(var(--pi-good) / .08)}
+.mk-gauges{display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:1rem;align-items:start}
+@media (min-width:768px){.mk-gauges{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1280px){.mk-gauges{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* --- ux_markets : Market map, sélecteur de période + panneau movers --- */
+.mk-bar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem;margin-bottom:.5rem}
+.mk-seg{display:inline-flex;border:1px solid rgb(var(--pi-border));border-radius:.5rem;overflow:hidden}
+.mk-seg-b{padding:.25rem .75rem;font-size:.75rem;font-weight:600;color:rgb(var(--pi-ink-mute));background:transparent}
+.mk-seg-b:hover{color:rgb(var(--pi-ink))}
+.mk-seg-b.on{background:rgb(var(--pi-accent));color:rgb(var(--pi-card))}
+.mk-count{display:flex;flex-wrap:wrap;gap:.25rem 1rem;font-size:.875rem;color:rgb(var(--pi-ink))}
+.mk-split{display:block}
+.mk-map{position:relative;width:100%;aspect-ratio:16/10;min-height:480px;max-height:max(480px,calc(100vh - 300px));container-type:size;border-radius:8px;overflow:hidden}
+.mk-map>a{outline:1px solid rgb(var(--pi-card) / .22)}
+.mk-side{margin-top:.75rem}
+.mk-side-h{font-size:.7rem;font-weight:600;color:rgb(var(--pi-ink-mute));margin:.5rem 0 .25rem}
+.mk-mv{display:grid;grid-template-columns:1fr auto 3rem;gap:.5rem;padding:.35rem 0;font-size:.875rem;text-decoration:none}
+.mk-mv>span:last-child{text-align:right}
+@media (min-width:1024px){
+  .mk-split{display:flex;gap:1rem;align-items:flex-start}
+  .mk-map{flex:1 1 auto;min-width:0;width:auto}
+  .mk-side{flex:0 0 250px;width:250px;margin-top:0}
+}
+.pi-fold .read-clamp{-webkit-line-clamp:unset;display:block;overflow:visible}
+.pi-fold .js-read-more{display:none!important}
+.pi-fold > summary{cursor:pointer;user-select:none;font-size:.75rem;font-weight:600;color:rgb(var(--pi-ink-mute))}
+.pi-fold > summary:hover{color:rgb(var(--pi-ink))}
+
+/* --- ux_markets2 : couleur / taille / zoom secteur de la Market map, vue compacte de /movers --- */
+.mk-opt{display:inline-flex;align-items:center;gap:.375rem}
+.mk-lab{font-size:.7rem;font-weight:600;color:rgb(var(--pi-ink-mute))}
+.mk-back{padding:.25rem .75rem;font-size:.75rem;font-weight:600;border:1px solid rgb(var(--pi-accent));border-radius:.5rem;color:rgb(var(--pi-accent));background:transparent}
+.mk-back:hover{background:rgb(var(--pi-accent));color:rgb(var(--pi-card))}
+.mk-zoom-name{margin-left:.5rem;font-size:.875rem;font-weight:600;color:rgb(var(--pi-ink))}
+.mv-filters{display:flex;flex-wrap:wrap;gap:.375rem;margin-bottom:.5rem}
+.mv-pill{padding:.2rem .65rem;font-size:.75rem;font-weight:600;border:1px solid rgb(var(--pi-border));border-radius:999px;color:rgb(var(--pi-ink-mute));background:transparent}
+.mv-pill:hover{color:rgb(var(--pi-ink))}
+.mv-pill.on{background:rgb(var(--pi-accent));border-color:rgb(var(--pi-accent));color:rgb(var(--pi-card))}
+.mv-row{display:grid;grid-template-columns:4.25rem 4.5rem 4rem 3.25rem minmax(0,1fr);gap:.5rem;align-items:baseline;padding:.4rem 1rem;font-size:.875rem}
+.mv-row>.mv-news{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:rgb(var(--pi-ink-mute));text-decoration:none}
+.mv-row>.mv-news:hover{color:rgb(var(--pi-accent))}
+.mv-row>.nums:nth-child(n+3){text-align:right}
+.mv-row[hidden]{display:none}
+
+/* /sentiment (flag ux_sentiment): each section is a <details>; the summary is the title + key figure */
+.pi-sec>summary{cursor:pointer;list-style:none;gap:.5rem}
+.pi-sec>summary::-webkit-details-marker{display:none}
+.pi-sec>summary::after{content:"▾";order:3;color:rgb(var(--pi-ink-mute));transition:transform .15s}
+.pi-sec:not([open])>summary{margin-bottom:0}
+.pi-sec:not([open])>summary::after{transform:rotate(-90deg)}
+@media (max-width:639px){.pi-sec>summary>span{display:none}.pi-sec>summary>h2>span{display:inline}}
+
+/* ux_markets : jours repliés du calendrier (au-delà des 3 premiers) */
+details.pi-calday>summary{list-style:none;cursor:pointer}
+details.pi-calday>summary::-webkit-details-marker{display:none}
+
+/* /learn (ux_learn): sections fold into <details> on a phone; desktop keeps them open and plain */
+.pi-fold-sum{list-style:none;cursor:default}
+.pi-fold-sum::-webkit-details-marker{display:none}
+@media (max-width:639.98px){
+  .pi-fold-sum{cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+  .pi-fold-sum::after{content:"\25BE";color:rgb(var(--pi-ink-mute));transition:transform .15s}
+  details[open]>.pi-fold-sum::after{transform:rotate(180deg)}
+  details[data-fold]{scroll-margin-top:7rem}
+}
+
+/* ===== Plus de majuscules forcées (26/10, skill frontend-design : les étiquettes en capitales
+   espacées sont le premier signe d'une page générée). La classe .uppercase reste dans les
+   templates, elle ne change plus la casse : première lettre en capitale, le reste comme écrit. ===== */
+.uppercase{text-transform:none}
+.uppercase::first-letter{text-transform:uppercase}
+.uppercase[class*="tracking-"]{letter-spacing:normal}
+
+/* ===== Passe des skills, 26/10 (impeccable adapt/harden/typeset, ibelick accessibility) ===== */
+/* iOS zoome la page dès qu'un champ de moins de 16 px prend le focus : 16 px sur écran tactile. */
+@media (pointer:coarse){input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{font-size:1rem}}
+/* cases, boutons radio et curseurs à la couleur de la charte au lieu du bleu du navigateur */
+input[type=checkbox],input[type=radio],input[type=range],progress{accent-color:rgb(var(--pi-accent))}
+::selection{background:rgb(var(--pi-accent) / .2)}
+/* sous 12 px, un chiffre ne se lit plus sur téléphone */
+.text-\[10px\],.text-\[11px\]{font-size:.75rem}
+/* lien d'évitement : invisible, il apparaît au premier Tab pour sauter le menu */
+.skip-link{position:absolute;left:.5rem;top:-3rem;z-index:100;padding:.5rem .75rem;border-radius:.5rem;background:rgb(var(--pi-accent));color:white;font-size:.875rem;font-weight:600}
+.skip-link:focus{top:.5rem}
+/* texte violet sur crème : 3,9:1 avec l'accent, il faut 4,5:1 pour du petit texte (impeccable audit).
+   Même violet, un cran plus sombre, pour le texte seulement en thème clair. */
+html:not(.dark) .text-accent{color:rgb(var(--pi-accent-ink))}
+
+
+/* ===== Définitions au survol (learn_v2, learn-tips.js) ===== */
+.pi-tip{text-decoration:underline dotted rgb(var(--pi-accent) / .7);text-underline-offset:3px;text-decoration-thickness:1px;cursor:help}
+.pi-tip:focus-visible{outline:2px solid rgb(var(--pi-accent) / .5);outline-offset:1px;border-radius:2px}
+.pi-tip-pop{position:fixed;z-index:9998;background:rgb(var(--pi-card));color:rgb(var(--pi-ink));border:1px solid rgb(var(--pi-border));border-radius:10px;padding:10px 12px;box-shadow:0 6px 24px rgba(0,0,0,.14);font-size:13px;line-height:1.45}
+.pi-tip-pop .pi-tip-h{font-weight:600;margin-bottom:2px}
+.pi-tip-pop p{color:rgb(var(--pi-ink-mute));margin:0}
+.pi-tip-pop .pi-tip-l{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:6px}
+.pi-tip-pop .pi-tip-l a{color:rgb(var(--pi-accent-ink));font-weight:500}
+html.dark .pi-tip-pop .pi-tip-l a{color:rgb(var(--pi-accent))}
+/* ux_epure (26/10): subtitles fold into an (i) next to the title, hover or tap to read. */
+.pi-info{display:none}
+.ux-epure .pi-sub{display:none}
+.ux-epure .pi-info{display:inline-flex;align-items:center;justify-content:center;position:relative;width:1rem;height:1rem;margin-left:.45rem;border:1px solid currentColor;border-radius:9999px;font:600 .7rem/1 ui-sans-serif,system-ui,sans-serif;font-style:italic;color:rgb(var(--pi-ink-mute));vertical-align:middle;cursor:help;opacity:.7}
+.ux-epure .pi-info:hover,.ux-epure .pi-info:focus{opacity:1;outline:none}
+.ux-epure .pi-info:hover::after,.ux-epure .pi-info:focus::after{content:attr(data-tip);position:absolute;left:0;top:1.5rem;z-index:50;width:min(22rem,80vw);padding:.5rem .65rem;border-radius:.5rem;background:rgb(var(--pi-ink));color:rgb(var(--pi-bg));font:400 .8rem/1.4 ui-sans-serif,system-ui,sans-serif;letter-spacing:0;text-transform:none;white-space:normal;box-shadow:0 4px 14px rgb(var(--pi-ink) / .18)}
+.ux-epure .lvl-watch{background:rgb(var(--pi-warn) / .1);border-color:rgb(var(--pi-warn) / .3)}
+/* ===== Page ticker v2 (flag name_layout2, 26/10) : barre collante identité + 4 actions + « ⋯ », puis onglets ===== */
+.nx-bar{position:sticky;top:4rem;z-index:20;background:rgb(var(--pi-bg));margin:.75rem -.25rem 1rem;padding:0 .25rem;border-bottom:1px solid rgb(var(--pi-border))}
+.nx-row{display:flex;flex-wrap:wrap;align-items:center;gap:.375rem;padding:.5rem 0 .25rem}
+.nx-id{display:none;align-items:baseline;gap:.5rem;margin-right:.5rem;white-space:nowrap;font-size:.8125rem;color:rgb(var(--pi-ink-mute))}
+.nx-bar.is-stuck .nx-id{display:inline-flex}
+.nx-btn{display:inline-flex;align-items:center;gap:.375rem;padding:.25rem .625rem;border-radius:.5rem;border:1px solid rgb(var(--pi-border));background:transparent;color:rgb(var(--pi-ink-mute));font-size:.75rem;font-weight:500;line-height:1.25rem;cursor:pointer;text-decoration:none;list-style:none}
+.nx-btn::-webkit-details-marker{display:none}
+.nx-btn:hover{background:rgb(var(--pi-hover));color:rgb(var(--pi-ink))}
+.nx-btn.nx-on{border-color:rgb(var(--pi-accent) / .4);color:rgb(var(--pi-accent-ink));background:rgb(var(--pi-accent) / .1)}
+.nx-menu{position:relative;display:inline-block}
+.nx-menu[open]>.nx-btn{background:rgb(var(--pi-hover));color:rgb(var(--pi-ink))}
+.nx-pop{position:absolute;left:0;top:100%;margin-top:.25rem;z-index:30;min-width:13rem;max-width:min(20rem,calc(100vw - 2rem));background:rgb(var(--pi-card));border:1px solid rgb(var(--pi-border));border-radius:.5rem;box-shadow:0 4px 14px rgb(var(--pi-ink) / .14);padding:.25rem}
+.nx-right>.nx-pop{left:auto;right:0}
+.nx-item{display:flex;align-items:center;gap:.5rem;width:100%;padding:.4rem .5rem;border-radius:.375rem;border:0;background:transparent;color:rgb(var(--pi-ink));font-size:.75rem;text-align:left;cursor:pointer;text-decoration:none}
+.nx-item:hover{background:rgb(var(--pi-hover))}
+.nx-sep{margin:.25rem 0;border-top:1px solid rgb(var(--pi-border))}
+.nx-note{padding:.25rem .5rem;font-size:.75rem;color:rgb(var(--pi-ink-mute))}
+.nx-form{display:flex;flex-wrap:wrap;gap:.375rem;padding:.25rem .5rem}
+.nx-form input,.nx-form select{padding:.25rem .5rem;border-radius:.375rem;border:1px solid rgb(var(--pi-border));background:rgb(var(--pi-bg));font-size:.8125rem;min-width:0;color:rgb(var(--pi-ink))}
+.nx-form input[name=level]{width:5.5rem}
+.nx-form input[name=note]{flex:1 1 8rem}
+.nx-form select[name=condition]{flex:1 1 100%}
+.nx-form button{padding:.25rem .625rem;border-radius:.375rem;border:0;background:rgb(var(--pi-accent));color:white;font-size:.75rem;font-weight:600;cursor:pointer}
+.nx-pill{display:inline-flex;align-items:center;margin:.125rem .25rem;padding:.125rem .5rem;border-radius:999px;border:1px solid rgb(var(--pi-accent) / .3);background:rgb(var(--pi-accent) / .1);color:rgb(var(--pi-accent-ink));font-size:.75rem;font-weight:500;cursor:pointer}
+.nx-bar .name-tabs{display:flex;overflow-x:auto;scrollbar-width:none;margin:0}
+.nx-bar .name-tabs::-webkit-scrollbar{display:none}
+.nx-long{display:none}
+@media (min-width:640px){.nx-long{display:inline}}
+/* Screeners Overview (26/10): the card head opens the screen, a row opens the name, ☆ follows on hover */
+.ov-head{display:block;margin:-.4rem -.5rem;padding:.4rem .5rem;border-radius:.6rem;text-decoration:none;transition:background .12s}
+.ov-head:hover{background:rgb(var(--pi-accent) / .06)}
+.ov-head:hover .font-semibold{color:rgb(var(--pi-accent))}
+.ov-pin{width:28px;height:28px;border-radius:.5rem;font-size:.95rem;line-height:1;color:rgb(var(--pi-ink-mute) / .7)}
+.ov-pin:hover,.ov-pin.is-on{color:rgb(var(--pi-accent))}
+.ov-row{position:relative;display:flex;align-items:center}
+.ov-link{flex:1;min-width:0;display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.375rem .25rem;margin:0 -.25rem;border-radius:.4rem;text-decoration:none}
+.ov-link:hover{background:rgb(var(--pi-accent) / .05)}
+.ov-link:hover .font-semibold{color:rgb(var(--pi-accent))}
+.ov-follow button{width:26px;height:26px;margin-left:.25rem;font-size:.875rem;line-height:1;border-radius:.4rem;color:rgb(var(--pi-ink-mute));opacity:0;transition:opacity .12s}
+.ov-row:hover .ov-follow button,.ov-follow button:focus-visible,.ov-follow.is-on button{opacity:1}
+.ov-follow.is-on button,.ov-follow button:hover{color:rgb(var(--pi-accent))}
+@media (hover:none){.ov-follow button{opacity:.55}}
+/* Follow star in table name cells: always visible on a phone, one tap, 40px target (no hover needed there). */
+@media (max-width:639px){.watch-star{opacity:1 !important}.watch-star button{min-width:40px;min-height:40px;display:inline-flex;align-items:center;justify-content:center}}
+.ov-new,.ov-newc{font-size:.7rem;padding:0 .35rem;border-radius:.3rem;background:rgb(var(--pi-accent) / .1);color:rgb(var(--pi-accent));font-weight:600}
+.ov-new,.ov-newc{display:none}
+.ov-m-new .ov-new,.ov-m-new .ov-newc{display:inline}
+/* Theme chart flip (31/10, flag theme_flip): names on the left, one chart on the right, space bar = next name. */
+.th-flip{display:grid;grid-template-columns:15rem minmax(0,1fr);gap:.75rem;height:calc(100vh - 13rem);min-height:30rem}
+.th-flip-list{overflow-y:auto;border:1px solid rgb(var(--pi-border));border-radius:.75rem;background:rgb(var(--pi-card))}
+.th-flip-row{display:flex;align-items:center;justify-content:space-between;gap:.5rem;width:100%;padding:.4rem .75rem;font-size:.85rem;text-align:left;border-bottom:1px solid rgb(var(--pi-border) / .6)}
+.th-flip-row:hover{background:rgb(var(--pi-hover))}
+.th-flip-row.is-on{background:rgb(var(--pi-accent) / .1);box-shadow:inset 3px 0 0 rgb(var(--pi-accent))}
+.th-flip-chart{border:1px solid rgb(var(--pi-border));border-radius:.75rem;overflow:hidden;background:rgb(var(--pi-card))}
+.th-flip-chart iframe{width:100%;height:100%;border:0;display:block}
+@media (max-width:767px){.th-flip{grid-template-columns:1fr;grid-template-rows:60vh 40vh;height:auto}.th-flip-chart{order:-1}}
+/* Charts view on any list (31/10, flag flip_view): full-screen layer above the header (z-40). */
+.pi-flip-box{position:fixed;inset:0;z-index:50;background:rgb(var(--pi-bg, var(--pi-card)));padding:1rem 1.25rem;overflow:auto}
+.pi-flip-box .th-flip{height:calc(100vh - 5rem)}
+@media (max-width:767px){.pi-flip-box .th-flip{height:auto}}
+/* Divergence pill (31/10): amber = look closer, never red/green (not a verdict). */
+.pi-pill-warn{font-size:.7rem;font-weight:600;padding:.05rem .4rem;border-radius:999px;background:rgb(var(--pi-warn) / .14);color:rgb(var(--pi-warn));white-space:nowrap}
+.pi-pill-mute{font-size:.7rem;font-weight:600;padding:.05rem .4rem;border-radius:999px;border:1px solid rgb(var(--pi-border));color:rgb(var(--pi-ink-mute));white-space:nowrap}
+.pi-pill-warn{background:rgb(var(--pi-warn) / .2);color:rgb(var(--pi-ink));border:1px solid rgb(var(--pi-warn) / .45)}
+/* Sub-sector table (31/10): between 1024 and 1439 px the card clips the table (sticky header needs
+   overflow visible), so the secondary columns step aside: Sector, RS 60D, A/D (cells 3, 9, 11). */
+@media (min-width:1024px) and (max-width:1439px){
+  .ss-table thead th:nth-child(3),.ss-table thead th:nth-child(9),.ss-table thead th:nth-child(11),
+  .ss-table tr.ss-row>td:nth-child(3),.ss-table tr.ss-row>td:nth-child(9),.ss-table tr.ss-row>td:nth-child(11){display:none}
+}
+/* 31/10 phone fixes: theme tile names wrap instead of "Trump Por..."; a scrolling tab row
+   fades at its right edge so the hidden tabs read as "more this way". */
+@media (max-width:639px){
+  .theme-tile-name{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.2}
+  [data-tabs="ep"]{-webkit-mask-image:linear-gradient(to right,black 85%,transparent);mask-image:linear-gradient(to right,black 85%,transparent);padding-right:2rem}
+}
+
+/* iPhone, app installée (04/11) : la barre du bas passe au-dessus de la barre d'accueil,
+   et le contenu évite l'encoche en paysage. env() vaut 0 partout ailleurs. */
+@media (max-width:1023.98px){
+  body.pb-16{padding-bottom:calc(4rem + env(safe-area-inset-bottom));padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+  .pi-tabbar{padding-bottom:env(safe-area-inset-bottom);padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+  #toasts{bottom:calc(5rem + env(safe-area-inset-bottom))}
+}
+
+/* Passe mobile (04/11) */
+/* Sur écran tactile, le survol reste collé après un toucher : la carte semblait sélectionnée. */
+@media (hover:none){
+  tr.group.hover\:bg-sepia-hover:hover{background-color:transparent}
+  tr.group:hover>td.group-hover\:bg-sepia-hover{background-color:transparent}
+  body.has-side main table tbody tr:hover>td{background-color:transparent}
+}
+@media (max-width:639px){
+  /* Screeners : carte de 3 colonnes, le graphique à côté du nom, prix et jour d'abord. Toutes les valeurs restent. */
+  .board-cards tbody tr{grid-template-columns:repeat(3,minmax(0,1fr));gap:.1rem .7rem;padding:.4rem .75rem .5rem}
+  .board-cards td:first-child{grid-column:1 / 3;order:-2}
+  .board-cards td:last-child{grid-column:3;order:-2;justify-content:flex-end}
+  .board-cards td:last-child svg{width:100%!important;max-width:5.5rem;height:auto}
+  .board-cards td[data-label="Price"],.board-cards td[data-label="Day"]{order:-1}
+  .board-cards td[data-label]:not([data-label=""]){gap:.25rem;font-size:.8rem}
+  .board-cards td[data-label]:not([data-label=""])::before{font-size:.65rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .board-cards .conv-bar{display:none}
+  .board-cards td:first-child>div{flex-wrap:wrap;row-gap:.15rem}
+  .board-cards td:first-child button{border:0;background:transparent}
+  .scr-ai-pop{position:fixed;left:1rem;right:1rem;width:auto!important;max-height:60vh;overflow-y:auto}
+  .scr-crumb,#uxp2-sets-menu{display:none}
+  .scr-tools{padding:.4rem .5rem;column-gap:.35rem;row-gap:.35rem}
+  /* Fiche action : prix à gauche, petit graphique à droite, adresse et ville repliées. */
+  .nm-px{width:100%;flex-direction:row-reverse;justify-content:space-between}
+  .nm-px>.text-right{text-align:left}
+  .nm-spark{display:block!important}
+  #company-profile>p{display:none}
+}
