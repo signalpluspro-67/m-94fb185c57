@@ -1,0 +1,154 @@
+/* chart-shell.css: the workspace at /chart, laid out the way TradingView lays
+   out a chart: top bar, tool rail on the left, panels on the right, ranges at
+   the bottom, the chart taking everything else. Tokens first; dark follows the
+   app's html.dark. Scoped to #tv so /name keeps its card. */
+#tv{--bg:rgb(var(--pi-card));--bg2:rgb(var(--pi-bg));--line:rgb(var(--pi-border));--text:rgb(var(--pi-ink));--mute:rgb(var(--pi-ink-mute));--blue:rgb(var(--pi-accent));--blue-soft:rgb(var(--pi-accent) / .12);--up:rgb(var(--pi-good));--dn:rgb(var(--pi-bad));--hover:rgb(var(--pi-ink) / .06);--panel:rgb(var(--pi-card))}
+html.dark #tv{--bg:rgb(var(--pi-card));--bg2:rgb(var(--pi-bg));--line:rgb(var(--pi-border));--text:rgb(var(--pi-ink));--mute:rgb(var(--pi-ink-mute));--blue:rgb(var(--pi-accent));--hover:rgb(var(--pi-ink) / .08);--panel:rgb(var(--pi-card))}
+#tv{display:grid;position:fixed;top:var(--hdr,3.5rem);left:0;right:0;bottom:0;height:auto;min-height:0;z-index:20;grid-template-rows:minmax(40px,auto) 1fr 32px;grid-template-columns:44px minmax(0,1fr) 44px 300px;grid-template-areas:"top top top top" "rail chart icons panel" "bottom bottom icons panel";
+  background:var(--bg);color:var(--text);font:12px/1.4 -apple-system,"Inter","Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-variant-numeric:tabular-nums;border-top:1px solid var(--line)}
+#tv.no-panel{grid-template-columns:44px minmax(0,1fr) 44px 0} #tv.no-panel #ws-dock{display:none}
+/* too long for the width (the side bar takes 15rem): the top bar wraps onto a second line instead of losing its right end */
+#tv .top{grid-area:top;display:flex;flex-wrap:wrap;align-items:center;gap:2px;row-gap:2px;min-height:40px;padding:0 8px;border-bottom:1px solid var(--line);overflow:visible;position:relative;z-index:30;min-width:0}
+#tv .rail{grid-area:rail;border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;padding:6px 0;gap:2px;overflow:auto}
+#tv .chartcol{grid-area:chart;position:relative;min-width:0;min-height:0;overflow:auto;display:flex;flex-direction:column}
+#tv .icons{grid-area:icons;border-left:1px solid var(--line);display:flex;flex-direction:column;align-items:center;padding:6px 0;gap:2px}
+#tv #ws-dock{grid-area:panel;border-left:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;min-height:0;overflow:auto;padding:0;border-radius:0;border-top:0;border-bottom:0;border-right:0;position:static;max-height:none}
+#tv .bottom{grid-area:bottom;display:flex;align-items:center;gap:2px;padding:0 8px;border-top:1px solid var(--line);color:var(--mute)}
+/* flat buttons everywhere in the shell, including the card's own toolbar once it is moved up */
+#tv .tb,#tv .top button,#tv .top summary,#tv .rail button,#tv .icons button,#tv .bottom button{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 8px;border:0!important;border-radius:6px;background:transparent;color:var(--text);font:inherit;font-size:13px;line-height:1;cursor:pointer;white-space:nowrap;box-shadow:none}
+#tv .top button:hover,#tv .top summary:hover,#tv .rail button:hover,#tv .icons button:hover,#tv .bottom button:hover{background:var(--hover)}
+#tv .top .bg-accent,#tv .top .on,#tv .rail .bg-accent,#tv .rail .on,#tv .icons .on,#tv .bottom .on{background:var(--blue-soft)!important;color:var(--blue)!important}
+#tv .top .text-ink-mute,#tv .top .text-ink{color:var(--text)!important} #tv .top .text-white{color:var(--blue)!important}
+#tv .top svg,#tv .rail svg,#tv .icons svg,#tv .bottom svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+#tv .rail button,#tv .icons button{width:32px;height:32px;padding:0;justify-content:center;color:var(--mute);font-size:15px} #tv .rail button:hover,#tv .icons button:hover{color:var(--text)}
+#tv .rail svg,#tv .icons svg{width:20px;height:20px}
+#tv .sep{width:1px;height:20px;background:var(--line);margin:0 4px;flex:none} #tv .rail .sep,#tv .icons .sep{width:20px;height:1px;margin:6px 0}
+#tv .sym{font-weight:700;font-size:14px} #tv .sym small{font-weight:500;color:var(--mute);margin-left:6px;font-size:12px}
+#tv .primary{background:var(--blue)!important;color:#fff!important;font-weight:600;border-radius:8px;padding:0 12px;text-decoration:none} #tv .primary:hover{opacity:.88}
+#tv .brand{width:24px;height:24px;border-radius:7px;background:rgb(var(--pi-accent));display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:12px;margin-right:4px;flex:none}
+/* the card loses its frame; the chart fills the column */
+#tv .chartcol > .bg-white,#tv #tv-main > .bg-white{background:transparent!important;border:0!important;border-radius:0!important;padding:0!important;margin:0!important}
+#tv #chart-wrap{background:var(--bg)!important} #tv #lwchart{min-height:300px}
+#tv .cardbar,#tv .cardbar > div,#tv .cardbar .flex.flex-wrap,#tv .cardbar .flex.justify-between{display:contents} #tv .cardbar .inline-flex{display:inline-flex;flex:none} #tv .cardbar .menu{display:inline-block;position:relative;flex:none}
+#tv .top > *{flex:none}
+#tv .cardbar .menu > div,#tv .top .menu > div{background:var(--panel);border-color:var(--line);color:var(--text);box-shadow:0 8px 24px rgba(0,0,0,.12);font-size:12px}
+#tv .cardbar .grpsep{display:inline-block;width:1px;height:18px;background:var(--line);margin:0 5px;flex:none;align-self:center}
+#tv .cardbar details summary::-webkit-details-marker{display:none}
+#tv .cardbar #cp-note,#tv .cardbar #cp-replay-bar{padding:0 8px}
+#tv .legendrows{position:absolute;inset:0;z-index:6;pointer-events:none;font-size:12px}
+#tv .legendrows .lgw{position:absolute;left:8px;pointer-events:none}
+#tv .legendrows .row{display:inline-flex;align-items:center;gap:6px;pointer-events:auto;color:var(--mute);line-height:18px;height:18px;padding:0 5px;border-radius:4px;background:color-mix(in srgb, var(--bg) 78%, transparent)}
+#tv .legendrows .row:hover{background:var(--bg)}
+#tv .legendrows .row.picked{background:var(--bg);box-shadow:inset 0 0 0 1px var(--blue,#2962ff)}
+#tv .legendrows .dot{width:8px;height:8px;border-radius:2px;flex:none}
+#tv .legendrows .nm{white-space:nowrap} #tv .legendrows .v{font-weight:600;color:var(--text);font-variant-numeric:tabular-nums}
+#tv .legendrows .ico{display:inline-flex;gap:1px;margin-left:2px;opacity:.5;transition:opacity .12s}
+#tv .legendrows .row:hover .ico{opacity:1}
+#tv .legendrows .ico button{border:0;background:transparent;color:var(--mute);cursor:pointer;border-radius:4px;font-size:12px;line-height:1;padding:2px 4px}
+#tv .legendrows .ico button:hover{color:var(--text);background:var(--hover)}
+#tv .ph{padding:8px 8px 8px 12px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;font-weight:600;font-size:13px;color:var(--text)}
+#tv [data-pane]{padding:8px 12px;color:var(--text)} #tv [data-pane] .text-ink-mute{color:var(--mute)!important} #tv [data-pane] a{color:var(--text)}
+#tv .wrow{display:grid;grid-template-columns:1fr 64px 62px 58px;align-items:center;gap:8px;padding:6px 12px;cursor:pointer;border-radius:6px;text-decoration:none;color:var(--text)}
+#tv .wrow:hover{background:var(--hover)} #tv .wrow.on{background:var(--blue-soft)} #tv .wrow .tk{font-weight:600} #tv .wrow .nm{color:var(--mute);font-size:11px;display:block;margin-top:-2px} #tv .wrow .px{text-align:right} #tv .wrow .ch{text-align:right;font-weight:600}
+#tv .up{color:var(--up)} #tv .dn{color:var(--dn)}
+#tv .bottom .rng button{height:24px;padding:0 7px;font-size:12px;color:var(--mute)} #tv .bottom .rng button.on{color:var(--blue)}
+#tv .status{margin-left:auto;font-size:11.5px}
+#tv .tip{position:relative} #tv .rail .tip:hover:after{content:attr(data-tip);position:absolute;left:38px;top:50%;transform:translateY(-50%);background:var(--text);color:var(--bg);font-size:11px;padding:3px 8px;border-radius:4px;white-space:nowrap;z-index:40}
+#tv .icons .tip:hover:after{content:attr(data-tip);position:absolute;right:38px;top:50%;transform:translateY(-50%);background:var(--text);color:var(--bg);font-size:11px;padding:3px 8px;border-radius:4px;white-space:nowrap;z-index:40}
+#tv input,#tv select,#tv textarea{background:var(--bg2);color:var(--text);border-color:var(--line)}
+#tv #chartgrid-wrap{padding:8px 12px;border-top:1px solid var(--line)} #tv #chartgrid-wrap > .flex{color:var(--mute)}
+#tv #cp-rail{position:static!important;flex-direction:column;display:flex;gap:2px;opacity:1!important} #tv #cp-rail button{width:32px;height:32px;padding:0;font-size:15px;border:0!important;background:transparent;color:var(--mute)}
+#tv #cp-rail button:hover{color:var(--text);background:var(--hover)} #tv #cp-rail .bg-accent{background:var(--blue-soft)!important;color:var(--blue)!important}
+#tv #cp-objs,#tv #cp-style,#tv #cp-keys,#tv #cp-ctx,#tv #cp-pal{background:var(--panel);color:var(--text);border-color:var(--line)}
+@media (max-width:900px){#tv{grid-template-columns:44px minmax(0,1fr) 0 0;grid-template-areas:"top top top top" "rail chart chart chart" "bottom bottom bottom bottom"} #tv .icons,#tv #ws-dock{display:none} #tv .top{overflow-x:auto}}
+
+@media (max-width:1700px){#tv #layer-menu summary span,#tv #cp-cmp summary span,#tv #cp-types summary span,#tv #cp-draw summary span,#tv #ma-menu summary span,#tv #cp-tpl summary span{display:none}}
+@media (max-width:1560px){#tv #cp-replay span,#tv #cp-int summary span,#tv .sym small{display:none}}
+@media (max-width:1400px){#tv #cp-studies summary span,#tv #cp-int summary span,#tv .sym small,#tv #cp-replay span{display:none}}
+/* the phone: the rail becomes a bottom toolbar, the panel an overlay, the top bar scrolls */
+@media (max-width:900px){
+  #tv{grid-template-rows:40px 1fr 44px 32px;grid-template-columns:minmax(0,1fr);grid-template-areas:"top" "chart" "rail" "bottom"}
+  #tv.no-panel{grid-template-columns:minmax(0,1fr)}   /* the desktop no-panel grid (4 columns) would squeeze the chart to the rail's width */
+  #tv .top{flex-wrap:nowrap;overflow-x:auto;overflow-y:visible;scrollbar-width:none} #tv .top::-webkit-scrollbar{display:none}
+  #tv .rail{flex-direction:row;border-right:0;border-top:1px solid var(--line);padding:4px 6px;gap:4px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+  #tv #cp-rail{flex-direction:row!important} #tv .rail .sep,#tv .rail .cp-rail-sep{width:1px!important;height:24px!important;margin:0 4px!important}
+  #tv .rail button,#tv #cp-rail button{width:40px;height:36px;font-size:17px} #tv .rail svg{width:22px;height:22px}
+  #tv .icons{display:none} #tv #ws-dock{display:none;position:fixed;right:0;top:calc(3.5rem + 40px);bottom:76px;width:min(88vw,340px);z-index:35;box-shadow:-8px 0 24px rgba(0,0,0,.18)}
+  #tv.panel-open #ws-dock{display:flex}
+  #tv #cp-fly{left:6px!important;right:6px;top:auto!important;bottom:82px;width:auto!important;max-height:50vh;position:fixed}
+  #tv #lwchart{min-height:280px}
+  #tv .bottom .rng button{padding:0 5px} #tv .status{font-size:10.5px} #tv #tv-recent,#tv #tv-favs{display:none}
+}
+#tv .ph button{width:26px;height:26px;padding:0;border:0;background:transparent;border-radius:6px;color:var(--mute);cursor:pointer;display:inline-flex;align-items:center;justify-content:center} #tv .ph button:hover{background:var(--hover);color:var(--text)} #tv .ph button svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+/* the record-volume tag stays one line; it steps aside on a narrow screen */
+#tv #vz-tag,#tv #vol-rec{white-space:nowrap;font-size:11px;line-height:1;padding:4px 8px;flex:none;margin-left:2px}
+@media (max-width:1560px){#tv #vz-tag,#tv #vol-rec{display:none!important}}
+/* zoomed in or on a small screen: labels go, icons stay, the right side never leaves */
+@media (max-width:1300px){#tv #tv-recent{display:none} #tv .top .primary{padding:0 8px} #tv .top .sep{margin:0 2px} #tv .cardbar .grpsep{margin:0 2px}}
+@media (max-width:1200px){#tv #cp-types summary span,#tv #cp-draw summary span,#tv #cp-studies summary span,#tv #layer-menu summary span,#tv #cp-tpl summary span,#tv #cp-cmp summary span,#tv #ma-menu summary span,#tv #cp-int summary span,#tv #cp-replay span{display:none} #tv .top button,#tv .top summary{padding:0 5px}}
+@media (max-width:1100px){#tv #tf-w,#tf-m{display:none} #tv #tf-log,#tv #chart-snap{display:none} #tv .top .primary{font-size:0;padding:0 6px;width:28px;justify-content:center} #tv .top .primary::before{content:"J";font-size:12px}}
+@media (max-width:1000px){#tv #tf-full,#tv #cp-cmp,#tv #ma-menu{display:none} #tv .top{gap:0}}
+#tv #tv-laybtn{color:var(--mute)} #tv #tv-laybtn:hover{color:var(--text)}
+
+/* the side panel drags wider or narrower; the tool rail hides or sits on the right */
+@media (min-width:901px){#tv #ws-dock{position:relative}}
+#tv .ws-grip{position:absolute;left:0;top:0;bottom:0;width:6px;cursor:col-resize;z-index:5} #tv .ws-grip:hover,#tv .ws-grip.drag{background:var(--blue-soft)}
+#tv.no-rail .rail{display:none}
+#tv.rail-right .rail{border-right:0;border-left:1px solid var(--line)}
+#tv.rail-right .rail .tip:hover:after{left:auto;right:38px}
+@media (max-width:900px){#tv #tv-railside{display:none}}
+
+/* chart_workspace (26/10): focus mode, one top bar, Ask and Journal in the side panel,
+   a bottom panel for the rule tester, marks, notes and the board; the drawing groups rail */
+body.ws-focus > header > div > div.h-16{height:2.25rem}
+body.ws-focus > header form[role=search]{padding-top:.1rem!important;padding-bottom:.1rem!important}
+body.ws-focus > header .w-9.h-9{width:1.6rem;height:1.6rem;font-size:.7rem}
+body.ws-focus > header button.p-2,body.ws-focus > header form button.p-2{padding:.25rem}
+#tv.ws .brand{display:none}
+#tv.ws .ws-slot{display:contents}
+#tv.ws .ws-slot .menu{display:inline-block;position:relative;flex:none}
+#tv.ws .ws-slot > div.inline-flex{border:0;display:inline-flex;flex:none;overflow:visible}
+#tv.ws .ws-slot > div.inline-flex button{font-weight:600;padding:0 7px}
+#tv.ws .top details summary::-webkit-details-marker{display:none} #tv.ws .top details summary{list-style:none}
+#tv.ws .sym .ws-caret{color:var(--mute);font-size:.6875rem;margin-left:2px}
+#tv.ws #ws-save{font-weight:600}
+#tv.ws #ws-anchor{position:relative;display:inline-block;width:0;height:28px;flex:none}
+#tv.ws #ws-anchor > details{position:absolute;right:0;top:0;width:0;height:28px}
+#tv.ws #ws-anchor > details > summary{display:none!important}
+#tv.ws #ws-anchor > details > div{top:30px;margin-top:0}
+#tv.ws #ws-more{position:relative;flex:none}
+#tv.ws #ws-more > summary{font-size:1.125rem;letter-spacing:1px}
+#tv.ws #ws-menu{position:absolute;right:0;top:32px;z-index:40;min-width:15rem;background:var(--panel);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 24px rgb(var(--pi-ink) / .14);padding:4px}
+#tv.ws #ws-menu .ws-mi{display:flex;width:100%;justify-content:space-between;height:30px;padding:0 10px;font-size:.8125rem;border-radius:6px}
+#tv.ws #ws-menu .ws-mi kbd{color:var(--mute);font:inherit;font-size:.6875rem}
+#tv.ws #ws-menu .ws-mi-sep{height:1px;background:var(--line);margin:4px 6px}
+#tv.ws [data-pane="ask"] #cp-tools-row{display:block;margin:0}
+#tv.ws [data-pane="ask"] #cp-ask-form{display:flex;flex-wrap:wrap;gap:6px}
+#tv.ws [data-pane="ask"] #cp-ask-in{width:auto!important;max-width:100%!important;flex:1 1 9rem;min-width:0}
+#tv.ws [data-pane="ask"] #cp-ask-out{display:flex;flex-wrap:wrap;gap:4px;width:100%}
+#tv.ws .ws-btn{display:block;margin:0 0 8px;padding:7px 10px;border:1px solid var(--line);border-radius:8px;text-align:center;font-weight:600;color:var(--blue)!important;text-decoration:none;background:transparent;width:100%;cursor:pointer;font-size:.75rem}
+#tv.ws .ws-btn:hover{background:var(--hover)}
+#tv.ws #ws-read{margin-top:14px}
+#tv.ws #ws-bpanel{flex:none;max-height:min(260px,40vh);overflow:auto;border-top:1px solid var(--line);background:var(--panel)}
+#tv.ws #ws-bpanel [data-bp]{padding:8px 12px;color:var(--text)}
+#tv.ws #ws-bpanel #cp-strat-form,#tv.ws #ws-bpanel #cp-mark-form{margin-bottom:6px}
+#tv.ws #ws-bp-board .wrow{display:inline-flex;grid-template-columns:none;padding:3px 8px;margin:0 4px 4px 0;border:1px solid var(--line)}
+#tv.ws .bottom #ws-bp-tabs{display:inline-flex;gap:2px}
+#tv.ws #cp-rail .cp-rail-grow{flex:1 1 auto}
+#tv.ws .rail #cp-rail{flex:1 1 auto;min-height:100%}
+@media (max-width:900px){
+  body.ws-focus > header > div > div.h-16{height:2.75rem}
+  #tv.ws .rail #cp-rail{min-height:0;min-width:100%}
+  #tv.ws .top .menu > div.absolute,#tv.ws #ws-anchor > details > div,#tv.ws #ws-menu{position:fixed!important;left:6px!important;right:6px!important;top:calc(var(--hdr,3.5rem) + 42px)!important;width:auto!important;max-height:60vh;overflow:auto}
+  #tv.ws .bottom{overflow-x:auto;scrollbar-width:none} #tv.ws .bottom::-webkit-scrollbar{display:none}
+  #tv.ws .bottom .status{display:none}
+  #tv.ws #ws-bpanel{max-height:45vh}
+  #tv.ws #tf-w,#tv.ws #tf-m{display:inline-flex}
+  #tv.ws #ws-dock{top:calc(var(--hdr,3.5rem) + 40px);bottom:76px}
+}
+/* focus mode on a phone or a tablet: the app's bottom tab bar steps aside, the header menu stays */
+@media (max-width:1023px){body.ws-focus nav[aria-label="Mobile navigation"]{display:none!important}}
+@media (min-width:1300px){#tv.ws #layer-menu summary span,#tv.ws #cp-studies summary span{display:inline}}
+/* the family flyout lives in the rail: its rows are text, not 32px icon squares */
+#tv #cp-fly button{width:auto;height:28px;padding:0 8px;font-size:.75rem;justify-content:flex-start;color:var(--text);white-space:nowrap}
+#tv #cp-fly [data-fly]{flex:1 1 auto} #tv #cp-fly [data-flypin]{flex:none;padding:0 6px}
